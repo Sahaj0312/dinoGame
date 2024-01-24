@@ -20,13 +20,17 @@ export function setupCactus() {
 export function updateCactus(delta, speedScale, flipped) {
   if (flipped) {
     const elem = document.querySelectorAll("[data-cactus]");
-    elem[0].classList.add("flip");
-    elem[1].classList.add("flip");
+    if (elem.length > 0) {
+      for (let x of elem) {
+        x.classList.add("flip");
+      }
+    }
   } else {
     const elem = document.querySelectorAll("[data-cactus]");
-    if (elem.length == 2) {
-      elem[0].classList.remove("flip");
-      elem[1].classList.remove("flip");
+    if (elem.length > 0) {
+      for (let x of elem) {
+        x.classList.remove("flip");
+      }
     }
   }
   document.querySelectorAll("[data-cactus]").forEach((cactus) => {

@@ -19,19 +19,16 @@ let speedScale;
 let score;
 let flipped = false;
 function update(time) {
-  if (score > 50 && score < 90) {
-    flipped = true;
-  } else {
-    flipped = false;
-  }
-
   if (lastTime == null) {
     lastTime = time;
     window.requestAnimationFrame(update);
     return;
   }
-
   const delta = time - lastTime;
+
+  if (Math.random() < 0.01) {
+    flipped = !flipped;
+  }
 
   updateGround(delta, speedScale, flipped);
   updateDino(delta, speedScale, flipped);
