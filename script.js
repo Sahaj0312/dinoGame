@@ -8,6 +8,7 @@ const SPEED_SCALE_INCREASE = 0.00001;
 
 const worldElem = document.querySelector("[data-world]");
 const scoreElem = document.querySelector("[data-score]");
+const bestScoreElem = document.querySelector("[data-bestScore");
 const startScreenElem = document.querySelector("[data-start-screen]");
 
 setPixelToWorldScale();
@@ -16,7 +17,8 @@ document.addEventListener("keydown", handleStart, { once: true });
 
 let lastTime;
 let speedScale;
-let score;
+let score = 0;
+let bestScore = 0;
 let flipped = false;
 function update(time) {
   if (lastTime == null) {
@@ -61,7 +63,7 @@ function updateSpeedScale(delta) {
 
 function updateScore(delta) {
   score += delta * 0.01;
-  scoreElem.textContent = Math.floor(score);
+  scoreElem.textContent = `Score: ${Math.floor(score)}`;
 }
 
 function handleStart() {
@@ -81,6 +83,15 @@ function handleLose() {
     document.addEventListener("keydown", handleStart, { once: true });
     startScreenElem.classList.remove("hide");
   }, 100);
+  if (score > bestScore) {
+    console.log("reahced here");
+    bestScore = score;
+    localStorage.clear();
+    localStorage.setItem("bestScore", `${Math.floor(score)}`);
+    bestScoreElem.textContent = `Best Score: ${Math.floor(score)}`;
+  }
+
+  console.log(localStorage.getItem("bestScore"));
 }
 
 function setPixelToWorldScale() {

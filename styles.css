@@ -16,13 +16,22 @@ body {
 .world {
   overflow: hidden;
   position: relative;
+  border: 2px solid #000;
+  box-sizing: border-box;
 }
 
 .score {
   position: absolute;
   font-size: 3vmin;
-  right: 1vmin;
-  top: 1vmin;
+  right: 5vmin;
+  top: 5vmin;
+}
+
+.bestScore {
+  position: absolute;
+  font-size: 3vmin;
+  left: 5vmin;
+  top: 5vmin;
 }
 
 .start-screen {
@@ -51,7 +60,8 @@ body {
   width: 300%;
   bottom: 0;
   left: calc(var(--left) * 1%);
-  transform: scaleY(-1) translateY(100px); /* Vertical flip */
+  top: 0;
+  transform: scaleY(-1); /* Vertical flip */
 }
 
 .dino {
@@ -63,12 +73,11 @@ body {
 }
 
 .dino.flip {
-  --bottom: 0;
   position: absolute;
   left: 1%;
   height: 30%;
-  bottom: calc((var(--bottom) * 1%) * -1);
-  transform: scaleY(-1);
+  top: calc((var(--bottom) * 1%));
+  transform: scaleY(-1) translateY(-10%);
 }
 
 .cactus {
@@ -82,6 +91,6 @@ body {
   position: absolute;
   left: calc(var(--left) * 1%);
   height: 30%;
-  bottom: 0;
-  transform: scaleY(-1);
+  top: 0;
+  transform: scaleY(-1) translateY(-10%);
 }
